@@ -18,7 +18,7 @@ import java.util.Optional;
 public class CostumerServiceImpl implements CostumerService {
 
     // LogBack
-    private static final Logger LOGGER = LoggerFactory.getLogger(CostumerRepository.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CostumerServiceImpl.class);
 
     @Autowired
     CostumerRepository costumerRepository;
