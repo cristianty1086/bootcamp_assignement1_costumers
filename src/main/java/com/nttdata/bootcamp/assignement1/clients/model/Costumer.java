@@ -24,4 +24,6 @@ public class Costumer {
     String documentType;
     String documentNumber;
     CostumerType costumerType;
+    CostumerPersonType costumerPersonType;
+    CostumerEnterpriseType costumerEnterpriseType;
 }
