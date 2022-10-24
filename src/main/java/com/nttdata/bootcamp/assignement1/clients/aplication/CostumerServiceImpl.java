@@ -5,11 +5,11 @@ import com.nttdata.bootcamp.assignement1.clients.model.Costumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Optional;
 
 /**
  * CostumerServiceImpl implementa las operacion CRUD
@@ -25,6 +25,10 @@ public class CostumerServiceImpl implements CostumerService {
 
     @Override
     public Mono<Costumer> createCostumer(Mono<Costumer> costumer) {
+        if( costumer == null ) {
+            LOGGER.error("Error en: solicitud realizada para crear cliente, datos enviados");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "no envio ningun dato", null);
+        }
         LOGGER.info("Solicitud realizada para crear cliente");
         return costumer.flatMap(costumerRepository::insert);
     }
@@ -38,25 +42,13 @@ public class CostumerServiceImpl implements CostumerService {
     @Override
     public Mono<Costumer> updateCostumer(Costumer costumer) {
         LOGGER.info("Solicitud realizada para actualizar al cliente");
-        costumerRepository.findById(costumer.getId())
-                .map( currCostumer -> {
-                    LOGGER.info("Cliente encontrado para el id: " + costumer.getId());
-                    currCostumer.setName(costumer.getName());
-                    currCostumer.setLastname(costumer.getLastname());
-                    currCostumer.setDocumentType(costumer.getDocumentType());
-                    currCostumer.setDocumentNumber(costumer.getDocumentNumber());
-                    currCostumer.setCostumerType(costumer.getCostumerType());
-                    return costumerRepository.save(currCostumer);
-                });
-
-        return Mono.just(costumer);
+        return costumerRepository.save(costumer);
     }
 
     @Override
     public Mono<Void> deleteCostumer(Integer costumerId) {
         LOGGER.info("Solicitud realizada para crear cliente");
-        costumerRepository.deleteById(costumerId);
-        return null;
+        return costumerRepository.deleteById(costumerId);
     }
 
     @Override

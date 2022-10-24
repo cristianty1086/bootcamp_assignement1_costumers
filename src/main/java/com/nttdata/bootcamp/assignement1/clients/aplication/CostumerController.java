@@ -28,7 +28,7 @@ public class CostumerController {
         return costumerService.readCostumer(id);
     }
 
-    @PutMapping(value = "update/{id}")
+    @PutMapping(value = "update")
     @ResponseBody
     public Mono<Costumer> updateCostumer(@RequestBody Costumer costumer){
         return costumerService.updateCostumer(costumer);
