@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.math.BigInteger;
+
 @RestController
 @RequestMapping("costumer")
 public class CostumerController {
@@ -22,9 +24,9 @@ public class CostumerController {
         return costumerService.createCostumer(Mono.just(costumer));
     }
 
-    @GetMapping(value = "get/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Mono<Costumer> getCostumerById(@PathVariable("id") Integer id){
+    public Mono<Costumer> getCostumerById(@PathVariable("id") BigInteger id){
         return costumerService.readCostumer(id);
     }
 
@@ -36,14 +38,19 @@ public class CostumerController {
 
     @DeleteMapping(value = "delete/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @ResponseBody
-    public Mono<Void> deleteCostumerById(@PathVariable("id") Integer id){
+    public Mono<Void> deleteCostumerById(@PathVariable("id") BigInteger id){
         return costumerService.deleteCostumer(id);
     }
 
-    @GetMapping(value = "getAll", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Flux<Costumer> listarTodos(){
         return costumerService.listarTodos();
     }
 
+    @GetMapping(value = "getSaldos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Mono<String> getBalance(@PathVariable("id") BigInteger id){
+        return costumerService.getBalance(id);
+    }
 }

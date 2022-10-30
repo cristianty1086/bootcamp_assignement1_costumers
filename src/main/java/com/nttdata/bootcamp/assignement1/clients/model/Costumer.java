@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigInteger;
+
 /**
  * Maneja la informacion del cliente
  * costumerType indica el tipo de cliente: 1=persona, 2=empresa
@@ -18,7 +20,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Costumer {
     @Id
-    Integer id;
+    BigInteger id;
     String name;
     String lastname;
     String documentType;
