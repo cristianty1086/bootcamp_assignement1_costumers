@@ -53,4 +53,10 @@ public class CostumerController {
     public Mono<String> getBalance(@PathVariable("id") BigInteger id){
         return costumerService.getBalance(id);
     }
+
+    @GetMapping(value = "getConsolidadoCliente/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Mono<String> getConsolidadoCliente(@PathVariable("id") BigInteger id){
+        return costumerService.getConsolidadoCliente(id);
+    }
 }

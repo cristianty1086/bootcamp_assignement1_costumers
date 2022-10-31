@@ -19,4 +19,11 @@ public interface CostumerService {
     // leer todas
     Flux<Costumer> listarTodos();
     Mono<String> getBalance(BigInteger costumerId);
+
+    /**
+     * Devuelve un resumen del consolidado de todos los productos de un cliente
+     * @param costumerId es el id del cliente
+     * @return
+     */
+    Mono<String> getConsolidadoCliente(BigInteger costumerId);
 }
