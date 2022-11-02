@@ -56,4 +56,4 @@ jobs:
         app-name: 'bootcamp37-costumers'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_b896a3ba753d444eb3a3fbab38b06ea1 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0d026edf6ad94706bb8524a4fa8acfe7 }}/ms37-costumers:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0d026edf6ad94706bb8524a4fa8acfe7 }}/ms37-costumers:${{github.run_number }}'
