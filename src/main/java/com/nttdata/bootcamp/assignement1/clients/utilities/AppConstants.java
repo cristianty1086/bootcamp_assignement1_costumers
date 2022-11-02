@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class AppConstants {
 
-    public static String baseUrl = "http://localhost";
-    public static String baseUrlCredits = "http://localhost:8085";
-    public static String baseUrlBankAccounts = "http://localhost:8084";
+    public static String baseUrl = "https://bootcamp37-costumers.azurewebsites.net";
+    public static String baseUrlCredits = "https://bootcamp37-credits.azurewebsites.net";
+    public static String baseUrlBankAccounts = "https://bootcamp37-bankaccounts.azurewebsites.net";
     public static String getCurrentUrl() {
         String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         String appConfigPath = rootPath + "application.properties";
